@@ -9,22 +9,21 @@ public class ShoppingCartSystem {
 
     static Scanner scanner = new Scanner(System.in);
 
-        static void addNamePrice() {
+    void addNamePrice() {
         System.out.println("Enter the name of the item: ");
         String name = scanner.nextLine();
         System.out.println("Enter the price of the item: ");
         int priceInt = scanner.nextInt();
         scanner.nextLine();
 
-        ShoppingCartSystem system = new ShoppingCartSystem();
-        system.shoppingCart[itemCount] = name;
-        system.price[itemCount] = priceInt;
-        system.quantity[itemCount] = 1;
+        this.shoppingCart[itemCount] = name;
+        this.price[itemCount] = priceInt;
+        this.quantity[itemCount] = 1;
         itemCount++;
-        System.out.println("Item added: " + name + "price: " + priceInt);
+        System.out.println("Item added: " + name + " price: " + priceInt);
     }
 
-    static void addNamePriceQty() {
+    void addNamePriceQty() {
         System.out.println("Enter the name of the item: ");
         String name = scanner.nextLine();
         System.out.println("Enter the price of the item: ");
@@ -33,15 +32,14 @@ public class ShoppingCartSystem {
         int quantityInt = scanner.nextInt();
         scanner.nextLine();
 
-        ShoppingCartSystem system = new ShoppingCartSystem();
-        system.shoppingCart[itemCount] = name;
-        system.price[itemCount] = priceInt;
-        system.quantity[itemCount] = quantityInt;
+        this.shoppingCart[itemCount] = name;
+        this.price[itemCount] = priceInt;
+        this.quantity[itemCount] = quantityInt;
         itemCount++;
-        System.out.println("Item added: " + name + "price: " + priceInt + "quantity: " + quantityInt);
+        System.out.println("Item added: " + name + " price: " + priceInt + " quantity: " + quantityInt);
     }
 
-    static void addNamePriceQtyDiscount() {
+    void addNamePriceQtyDiscount() {
         System.out.println("Enter the name of the item: ");
         String name = scanner.nextLine();
         System.out.println("Enter the price of the item: ");
@@ -52,30 +50,31 @@ public class ShoppingCartSystem {
         int discountInt = scanner.nextInt();
         scanner.nextLine();
 
-        ShoppingCartSystem system = new ShoppingCartSystem();
-        system.shoppingCart[itemCount] = name;
-        system.price[itemCount] = priceInt;
-        system.quantity[itemCount] = quantityInt;
-        system.discount[itemCount] = discountInt;
+        this.shoppingCart[itemCount] = name;
+        this.price[itemCount] = priceInt;
+        this.quantity[itemCount] = quantityInt;
+        this.discount[itemCount] = discountInt;
         itemCount++;
-        System.out.println("Item added: " + name + "price: " + priceInt + ", quantity: " + quantityInt + " and discount: " + discountInt + "%");
+        System.out.println("Item added: " + name + " price: " + priceInt +
+                " quantity: " + quantityInt + " discount: " + discountInt + "%");
     }
 
-    static void viewCart(ShoppingCartSystem system) {
+    void viewCart() {
         System.out.println("Shopping Cart:");
         if (itemCount == 0) {
             System.out.println("Cart is empty.");
         } else {
             for (int i = 0; i < itemCount; i++) {
-                System.out.println((i + 1) + ". " + system.shoppingCart[i] + " - price: " + system.price[i] + ", quantity: " + system.quantity[i] + "and discount: " + system.discount[i] + "%");
+                System.out.println((i + 1) + ". " + "name: " + this.shoppingCart[i] + " price: " + this.price[i] +
+                        " quantity: " + this.quantity[i] + " discount: " + this.discount[i] + "%");
             }
         }
     }
 
-    static void calculateTotal(ShoppingCartSystem system) {
+    void calculateTotal() {
         int total = 0;
         for (int i = 0; i < itemCount; i++) {
-            int priceAfterDiscount = system.price[i] * system.quantity[i] * (100 - system.discount[i]) / 100;
+            int priceAfterDiscount = this.price[i] * this.quantity[i] * (100 - this.discount[i]) / 100;
             total += priceAfterDiscount;
         }
         System.out.println("Total price including discounts: " + total);
@@ -83,7 +82,7 @@ public class ShoppingCartSystem {
 
     public static void main(String[] args) {
         int choice;
-        ShoppingCartSystem cartSystem = new ShoppingCartSystem();
+        ShoppingCartSystem system = new ShoppingCartSystem();
 
         do {
             System.out.println("\nShopping Cart System");
@@ -99,19 +98,19 @@ public class ShoppingCartSystem {
 
             switch (choice) {
                 case 1:
-                    addNamePrice();
+                    system.addNamePrice();
                     break;
                 case 2:
-                    addNamePriceQty();
+                    system.addNamePriceQty();
                     break;
                 case 3:
-                    addNamePriceQtyDiscount();
+                    system.addNamePriceQtyDiscount();
                     break;
                 case 4:
-                    viewCart(cartSystem);
+                    system.viewCart();
                     break;
                 case 5:
-                    calculateTotal(cartSystem);
+                    system.calculateTotal();
                     break;
                 case 6:
                     System.out.println("Exiting");
